@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[spanish,english]{babel}
+\usepackage{multicol}
+\selectlanguage{spanish}
+
+\title{%
+	Data Mining en Social Media}
+\author{Javier Cort\'es Broch \\
+	\large jacorbro@masters.upv.es}
+
+\begin{document}
+	\maketitle
+	
+	\begin{multicols}{2}
+		\section*{\hfil Resumen\hfil}
+		Queremos predecir el g\'enero y la variadad de unos tweets dados en un dataset. En la pr\'actica vamos a intentar predecir con la mayor precisi\'on posible, para ello haremos una limpieza de datos, es decir, eliminaremos palabras del vocabulario que consideremos no influyentes para la predicci\'on del modelo.
+		La segunda parte del trabajo ser\'a la elecci\'on del modelo, en relaci\'on tiempo y accuraccy obtenido.
+		Probaremos varios modelos y haremos varios m\'etodos de selecci\'on del vocabulario para obtener el mejor resultado.
+		
+		
+		\section{Introducci\'on}
+		Tenemos un dataset con tweets etiquetados por g\'enero y variedad .
+		
+		Tenemos un total de 2800 tweets para el training y 1400 tweets para el test.
+		El objetivo trata de superar la precisi\'on sobre g\'enero de 66'43\% y variedad de 77'21\%.
+		
+		\section{Dataset}
+		El dataset est\'a compuesto con ficheros XML separados en training y test.
+		
+		Ejecutando el c\'odigo proporcionado, transformamos estos ficheros XML para poder utilizarlos en R.
+		
+		\section{Propuesta del alumno}
+		Para mejorar la precisi\'on de las predicciones junto con el c\'odigo proporcionado en R para la pr\'actica, realizamos las siguientes transformaciones:
+		
+		\begin{itemize}
+			\item Transformaci\'on de los textos a min\'usculas
+			\item Eliminar signos de puntuaci\'on
+			\item Eliminar stopwords
+			\item Eliminar palabras que terminen con s, para evitar plurales
+			\item Eliminar aquellas palabras que tengan longitud 1.
+			\item Eliminar las urls de que contienen im\'agenes.
+		\end{itemize}
+		
+		Una vez finalizada la limpieza, procedemos a la elecci\'on del algoritmo. 
+		
+		
+		Entrenamos el m\'odelo con support vector machine, pero no supera la precisi\'on inicial que queremos obtener.
+		
+		En segundo lugar probamos un m\'odelo Random Forest y observamos que al incrementar el n\'umero de arboles mejora nuestro m\'odelo, en relaci\'on tiempo de espera y accuracy decidimos quedarnos con 100 arboles.
+		
+		Decidimos hacer un m\'odelo de Naive Bayes pero no conseguimos mejorar el accuracy utilizado por Random Forest.
+		
+		Por ultimo probamos el algoritmo de Redes Neuronales pero el tiempo es excesivamente largo y decidimos no terminar con la ejecuci\'on.  
+		
+		
+		\section{Resultados experimentales}
+		
+		Depu\'es de la elecci\'on del algoritmo Random Forest con 100 \'arboles.
+		Obtenemos los resultados de  70.86\% y 85\%  para genero y variedad respectivamente. 
+		
+		\section{Conclusiones y trabajo futuro}
+		
+		Hemos conseguido mejorar la predicci\'on y el accuracy obtenido es mejor que el objetivo planteado.
+		Hemos observado como se comportan los algoritmos para tratar este tipo de problemas.
+		
+		
+		Como propuesta de mejora:
+		\begin{itemize}
+			\item Agrupar las palabras por su ra\'iz.
+			\item Calcular solo con las palabras mas utilizadas.
+			\item Observar como afecta la longitud de las palabras.
+		\end{itemize}
+			
+	\end{multicols}
+\end{document}
